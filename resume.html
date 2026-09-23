@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Syed Noor Ul Absar - Frontend Web Developer Resume (ATS Optimized)</title>
+  
+  <!-- Standard Web Font for ATS Cleanliness -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- RemixIcon for interactive web view -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css">
+
+  <style>
+    /* ==========================================================================
+       ATS-FRIENDLY RESUME STYLESHEET
+       Single-Column Standard Layout | Optimized for 98+ ATS Score & 1-Page Print
+       ========================================================================== */
+    
+    :root {
+      --primary-color: #0f172a;
+      --secondary-color: #334155;
+      --accent-color: #0284c7;
+      --border-color: #cbd5e1;
+      --text-muted: #64748b;
+      --bg-page: #ffffff;
+      --font-stack: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-stack);
+      color: var(--primary-color);
+      background-color: #f1f5f9;
+      line-height: 1.45;
+      font-size: 10pt;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Screen Action Bar (Hidden on print) */
+    .action-bar {
+      position: sticky;
+      top: 0;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .action-bar-title {
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ats-badge {
+      background: #10b981;
+      color: #ffffff;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .action-btn-group {
+      display: flex;
+      gap: 12px;
+    }
+
+    .action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .btn-download {
+      background: #0284c7;
+      color: #ffffff;
+    }
+
+    .btn-download:hover {
+      background: #0369a1;
+    }
+
+    .btn-back {
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-back:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Page Container - Exactly 1 A4 Page */
+    .resume-wrapper {
+      max-width: 210mm;
+      margin: 24px auto;
+      background: var(--bg-page);
+      padding: 16mm 18mm;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border-radius: 4px;
+    }
+
+    /* Header Section */
+    .resume-header {
+      text-align: center;
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+
+    .candidate-name {
+      font-size: 20pt;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--primary-color);
+      text-transform: uppercase;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .candidate-role {
+      font-size: 11pt;
+      font-weight: 600;
+      color: var(--accent-color);
+      margin-bottom: 6px;
+      letter-spacing: 0.2px;
+    }
+
+    .contact-info-list {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      font-size: 9pt;
+      color: var(--secondary-color);
+    }
+
+    .contact-info-list a {
+      color: var(--secondary-color);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-info-list a:hover {
+      color: var(--accent-color);
+      text-decoration: underline;
+    }
+
+    .contact-separator {
+      color: var(--border-color);
+    }
+
+    /* Resume Section Structure */
+    .resume-section {
+      margin-bottom: 10px;
+    }
+
+    .section-heading {
+      font-size: 10.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--primary-color);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 3px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .section-content {
+      font-size: 9.2pt;
+      color: var(--secondary-color);
+    }
+
+    /* Professional Summary */
+    .summary-text {
+      text-align: justify;
+      line-height: 1.42;
+    }
+
+    /* Skills Grid */
+    .skills-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.2pt;
+    }
+
+    .skills-table td {
+      padding: 2px 0;
+      vertical-align: top;
+    }
+
+    .skill-category-label {
+      width: 165px;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+    .skill-items-value {
+      color: var(--secondary-color);
+    }
+
+    /* Education Item */
+    .edu-entry {
+      margin-bottom: 4px;
+    }
+
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+
+    .entry-title {
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .entry-subtitle {
+      font-size: 9pt;
+      font-weight: 600;
+      color: var(--secondary-color);
+    }
+
+    .entry-date {
+      font-size: 8.8pt;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-align: right;
+    }
+
+    .entry-meta-score {
+      display: inline-block;
+      font-weight: 700;
+      color: #047857;
+      background: #ecfdf5;
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 8.5pt;
+      margin-left: 6px;
+    }
+
+    /* Projects List */
+    .project-entry {
+      margin-bottom: 7px;
+    }
+
+    .project-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .project-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 2px;
+    }
+
+    .project-name {
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+
+    .project-tech {
+      font-size: 8.5pt;
+      font-weight: 500;
+      color: var(--accent-color);
+      font-style: italic;
+    }
+
+    .project-links {
+      font-size: 8.5pt;
+      font-weight: 500;
+    }
+
+    .project-links a {
+      color: var(--accent-color);
+      text-decoration: none;
+      margin-left: 8px;
+    }
+
+    .project-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Bullet List */
+    .bullet-list {
+      list-style-type: square;
+      padding-left: 15px;
+      margin-top: 2px;
+    }
+
+    .bullet-list li {
+      margin-bottom: 2px;
+      line-height: 1.38;
+      text-align: justify;
+    }
+
+    .bullet-list li strong {
+      color: var(--primary-color);
+    }
+
+    /* Print Stylesheet - Enforces 1-Page A4 Precision */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 10mm 12mm;
+      }
+
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 9.5pt;
+      }
+
+      .action-bar {
+        display: none !important;
+      }
+
+      .resume-wrapper {
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        max-width: 100% !important;
+      }
+
+      .candidate-name {
+        color: #000000 !important;
+      }
+
+      .candidate-role {
+        color: #0284c7 !important;
+      }
+
+      .section-heading {
+        color: #000000 !important;
+        border-bottom: 1px solid #94a3b8 !important;
+      }
+
+      .project-links a, .contact-info-list a {
+        color: #0f172a !important;
+        text-decoration: none !important;
+      }
+
+      .entry-meta-score {
+        background: #f1f5f9 !important;
+        color: #0f172a !important;
+        border: 1px solid #cbd5e1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Sticky Navigation & Print Bar (Screen Only) -->
+  <aside class="action-bar">
+    <div class="action-bar-title">
+      <span>Syed Noor Ul Absar - Resume</span>
+      <span class="ats-badge" style="background:#0284c7;">Frontend Web Developer</span>
+    </div>
+    <div class="action-btn-group">
+      <a href="index.html" class="action-btn btn-back">
+        <i class="ri-arrow-left-line"></i>
+        <span>Back to Portfolio</span>
+      </a>
+      <a href="resume.pdf" download="Syed_Noor_Ul_Absar_Resume.pdf" class="action-btn btn-download" id="download-pdf-direct-btn">
+        <i class="ri-file-download-line"></i>
+        <span>Download PDF</span>
+      </a>
+      <button onclick="window.print()" class="action-btn btn-download" style="background:#047857;" title="Print or Save to PDF">
+        <i class="ri-printer-line"></i>
+        <span>Print / Save PDF</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Resume Document Container -->
+  <main class="resume-wrapper" id="resume-container">
+
+    <!-- Header Section -->
+    <header class="resume-header">
+      <h1 class="candidate-name">Syed Noor Ul Absar</h1>
+      <p class="candidate-role">Frontend Web Developer</p>
+      
+      <div class="contact-info-list">
+        <span><i class="ri-phone-line"></i> +91 9622497806</span>
+        <span class="contact-separator">|</span>
+        <span><i class="ri-mail-line"></i> <a href="mailto:syedabsar99@gmail.com">syedabsar99@gmail.com</a></span>
+        <span class="contact-separator">|</span>
+        <span><i class="ri-map-pin-line"></i> Budgam, Jammu & Kashmir, India - 191111</span>
+        <span class="contact-separator">|</span>
+        <span><i class="ri-linkedin-fill"></i> <a href="https://www.linkedin.com/in/syednoorulabsar/" target="_blank" rel="noopener noreferrer">linkedin.com/in/syednoorulabsar</a></span>
+        <span class="contact-separator">|</span>
+        <span><i class="ri-github-fill"></i> <a href="https://github.com/syedabsar99" target="_blank" rel="noopener noreferrer">github.com/syedabsar99</a></span>
+      </div>
+    </header>
+
+    <!-- Professional Summary -->
+    <section class="resume-section">
+      <h2 class="section-heading">Professional Summary</h2>
+      <div class="section-content">
+        <p class="summary-text">
+          High-achieving <strong>Frontend Web Developer</strong> and BCA graduate from <strong>Chandigarh University</strong> (<strong>8.35 SGPA</strong>) with extensive practical experience building responsive, mobile-first web applications. Proficient in <strong>HTML5, CSS3, JavaScript (ES6+), Tailwind CSS, and Bootstrap 5</strong>, with 12+ published open-source repositories on GitHub. Experienced in engineering dynamic client-side applications with LocalStorage persistence, RESTful API integrations, and DOM manipulation. Adept at leveraging modern AI development tools (<strong>ChatGPT, Claude, Gemini, Antigravity IDE</strong>) to accelerate code generation, optimize debugging cycles, and deliver clean, maintainable, human-readable code.
+        </p>
+      </div>
+    </section>
+
+    <!-- Technical Skills (ATS Keywords Matrix) -->
+    <section class="resume-section">
+      <h2 class="section-heading">Technical Skills</h2>
+      <div class="section-content">
+        <table class="skills-table">
+          <tbody>
+            <tr>
+              <td class="skill-category-label">Languages & Core:</td>
+              <td class="skill-items-value"><strong>HTML5, CSS3, JavaScript (ES6+), Vanilla JavaScript</strong>, Semantic Markup, DOM Manipulation</td>
+            </tr>
+            <tr>
+              <td class="skill-category-label">Frameworks & Styling:</td>
+              <td class="skill-items-value"><strong>Tailwind CSS, Bootstrap 5</strong>, Flexbox, CSS Grid, Responsive Web Design, Mobile-First Development</td>
+            </tr>
+            <tr>
+              <td class="skill-category-label">APIs & Browser Storage:</td>
+              <td class="skill-items-value"><strong>LocalStorage API, HTML5 Audio API, REST APIs & Fetch</strong>, JSON Integration, Clipboard API, Date API</td>
+            </tr>
+            <tr>
+              <td class="skill-category-label">AI Engineering Tools:</td>
+              <td class="skill-items-value"><strong>ChatGPT, Claude, Google Gemini, Antigravity IDE</strong>, AI-Assisted Debugging, Workflow Automation</td>
+            </tr>
+            <tr>
+              <td class="skill-category-label">Tools & Version Control:</td>
+              <td class="skill-items-value"><strong>Git, GitHub</strong>, Visual Studio Code, Chrome DevTools, Cross-Browser Compatibility, Vercel, GitHub Pages</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="resume-section">
+      <h2 class="section-heading">Education</h2>
+      <div class="section-content">
+        <div class="edu-entry">
+          <div class="entry-header">
+            <div>
+              <span class="entry-title">Bachelor of Computer Applications (BCA)</span>
+              <span class="entry-meta-score">8.35 SGPA</span>
+            </div>
+            <span class="entry-date">2023 – 2026 (Completed)</span>
+          </div>
+          <div class="entry-header">
+            <span class="entry-subtitle">Chandigarh University, Mohali, Punjab</span>
+          </div>
+          <ul class="bullet-list">
+            <li><strong>Relevant Coursework:</strong> Web Technologies, Object-Oriented Programming, Database Management Systems (DBMS), Computer Networks, Software Engineering.</li>
+            <li>Graduated with academic distinction (<strong>8.35 SGPA</strong>) while simultaneously publishing <strong>12+ frontend repositories</strong> on GitHub.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section class="resume-section">
+      <h2 class="section-heading">Featured Technical Projects</h2>
+      <div class="section-content">
+
+        <!-- Project 1: Music Player -->
+        <article class="project-entry">
+          <div class="project-title-row">
+            <div>
+              <span class="project-name">Music Player Web Application</span>
+              <span class="project-tech">| HTML5, CSS3, JavaScript (ES6), Audio API</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/syedabsar99/music-player" target="_blank" rel="noopener noreferrer">Code</a>
+              <a href="https://syedabsar99.github.io/music-player/" target="_blank" rel="noopener noreferrer">Live Demo</a>
+            </div>
+          </div>
+          <ul class="bullet-list">
+            <li>Architected an interactive, responsive web audio player featuring dynamic track queuing, duration calculation, and seek-bar dragging.</li>
+            <li>Implemented real-time volume management and playback controls using pure <strong>Vanilla JavaScript DOM event listeners</strong> without external audio libraries.</li>
+          </ul>
+        </article>
+
+        <!-- Project 2: Notes App -->
+        <article class="project-entry">
+          <div class="project-title-row">
+            <div>
+              <span class="project-name">Interactive Notes App with Palette Customization</span>
+              <span class="project-tech">| JavaScript, HTML5, CSS3, LocalStorage API</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/syedabsar99/notes-app" target="_blank" rel="noopener noreferrer">Code</a>
+              <a href="https://syedabsar99.github.io/notes-app/" target="_blank" rel="noopener noreferrer">Live Demo</a>
+            </div>
+          </div>
+          <ul class="bullet-list">
+            <li>Engineered a full-featured note creation system supporting inline editable paragraphs, color-coded themes, and instant note deletion.</li>
+            <li>Integrated persistent client-side data serialization via <strong>LocalStorage</strong>, ensuring 100% data retention across page refreshes and browser reboots.</li>
+          </ul>
+        </article>
+
+        <!-- Project 3: To-Do List App -->
+        <article class="project-entry">
+          <div class="project-title-row">
+            <div>
+              <span class="project-name">Task & To-Do Management Dashboard</span>
+              <span class="project-tech">| JavaScript, HTML5, CSS3, LocalStorage</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/syedabsar99/todo-list-app" target="_blank" rel="noopener noreferrer">Code</a>
+              <a href="https://syedabsar99.github.io/todo-list-app/" target="_blank" rel="noopener noreferrer">Live Demo</a>
+            </div>
+          </div>
+          <ul class="bullet-list">
+            <li>Developed a productivity application equipped with instant text search, real-time pending vs. completed task counters, and dark mode toggling.</li>
+            <li>Optimized DOM manipulation and event delegation patterns for fast, responsive item insertion and state updates.</li>
+          </ul>
+        </article>
+
+        <!-- Project 4: QR Code Generator & E-Commerce Clones -->
+        <article class="project-entry">
+          <div class="project-title-row">
+            <div>
+              <span class="project-name">E-Commerce & UI Theme Clones (Glozin & Kashmir Shawl Store)</span>
+              <span class="project-tech">| HTML5, CSS3, Bootstrap 5, Tailwind CSS</span>
+            </div>
+            <div class="project-links">
+              <a href="https://github.com/syedabsar99/glozin-theme-clone" target="_blank" rel="noopener noreferrer">Glozin Code</a>
+              <a href="https://kashmir-shawl-store.vercel.app" target="_blank" rel="noopener noreferrer">Kashmir Live</a>
+            </div>
+          </div>
+          <ul class="bullet-list">
+            <li>Constructed pixel-perfect, mobile-first responsive landing pages replicating commercial e-commerce layouts and design systems.</li>
+            <li>Leveraged <strong>Bootstrap 5 grid</strong> and custom CSS utilities to ensure fluid responsiveness across mobile, tablet, and ultra-wide screens.</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Key Strengths & Methodologies -->
+    <section class="resume-section">
+      <h2 class="section-heading">Strengths & Work Practices</h2>
+      <div class="section-content">
+        <ul class="bullet-list">
+          <li><strong>Clean, Readable Code:</strong> Strict focus on writing human-authored, modular JavaScript and semantic HTML adhering to W3C web standards.</li>
+          <li><strong>AI-Accelerated Engineering:</strong> Daily practitioner of modern AI developer workflows (ChatGPT, Claude, Gemini, Antigravity) for rapid prototyping, automated testing, and code optimization.</li>
+          <li><strong>Discipline & Continuous Learning:</strong> Proven track record of balancing rigorous academic study (8.35 SGPA) with practical open-source project shipping.</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
