@@ -93,6 +93,9 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
 }
 
 body {
@@ -101,6 +104,8 @@ body {
   color: var(--text-primary);
   line-height: 1.65;
   overflow-x: hidden;
+  max-width: 100vw;
+  width: 100%;
   position: relative;
   transition: background-color var(--transition-normal), color var(--transition-normal);
 }
@@ -941,14 +946,20 @@ ul {
 
 .section-container {
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 24px;
+  box-sizing: border-box;
+  min-width: 0;
 }
 
 .section-header {
   text-align: center;
   max-width: 680px;
   margin: 0 auto 56px;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
 }
 
 .section-badge {
@@ -966,12 +977,14 @@ ul {
   font-weight: 800;
   letter-spacing: -0.8px;
   margin-bottom: 12px;
+  word-break: break-word;
 }
 
 .section-subtitle {
   font-size: 1.05rem;
   color: var(--text-secondary);
   line-height: 1.6;
+  word-break: break-word;
 }
 
 .section-line {
@@ -988,6 +1001,17 @@ ul {
   grid-template-columns: 1.2fr 0.8fr;
   gap: 48px;
   align-items: center;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.about-text-content {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .about-headline {
@@ -996,6 +1020,7 @@ ul {
   line-height: 1.35;
   margin-bottom: 20px;
   color: var(--text-primary);
+  word-break: break-word;
 }
 
 .about-paragraph {
@@ -1003,6 +1028,7 @@ ul {
   color: var(--text-secondary);
   margin-bottom: 18px;
   line-height: 1.7;
+  word-break: break-word;
 }
 
 .about-paragraph strong {
@@ -1062,6 +1088,10 @@ ul {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .about-photo-card {
@@ -1074,6 +1104,7 @@ ul {
   max-width: 280px;
   width: 100%;
   margin: 0 auto;
+  box-sizing: border-box;
   transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal);
 }
 
@@ -1139,6 +1170,10 @@ ul {
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-lg);
   overflow: hidden;
+  max-width: 100%;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .editor-header {
@@ -1147,11 +1182,14 @@ ul {
   padding: 12px 18px;
   background: #161b22;
   border-bottom: 1px solid #30363d;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .window-buttons {
   display: flex;
   gap: 6px;
+  flex-shrink: 0;
 }
 
 .dot {
@@ -1168,6 +1206,9 @@ ul {
   font-size: 0.8rem;
   color: #8b949e;
   margin-left: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .editor-badge {
@@ -1178,15 +1219,26 @@ ul {
   color: #38bdf8;
   padding: 2px 8px;
   border-radius: var(--radius-sm);
+  flex-shrink: 0;
 }
 
 .editor-code {
-  padding: 20px;
+  padding: 18px 16px;
   font-family: var(--font-mono);
-  font-size: 0.88rem;
+  font-size: 0.84rem;
   line-height: 1.6;
   color: #c9d1d9;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.editor-code code {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .code-keyword { color: #ff7b72; font-weight: 600; }
@@ -1888,6 +1940,10 @@ ul {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
   gap: 36px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .contact-info-card,
@@ -1897,6 +1953,11 @@ ul {
   border-radius: var(--radius-lg);
   padding: 36px;
   box-shadow: var(--shadow-sm);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .contact-info-heading,
@@ -1904,6 +1965,7 @@ ul {
   font-size: 1.4rem;
   font-weight: 700;
   margin-bottom: 12px;
+  word-break: break-word;
 }
 
 .contact-info-desc {
@@ -1911,6 +1973,7 @@ ul {
   color: var(--text-secondary);
   line-height: 1.65;
   margin-bottom: 28px;
+  word-break: break-word;
 }
 
 .contact-methods {
@@ -1918,6 +1981,8 @@ ul {
   flex-direction: column;
   gap: 16px;
   margin-bottom: 32px;
+  width: 100%;
+  min-width: 0;
 }
 
 .contact-method-item {
@@ -1931,6 +1996,10 @@ ul {
   border-radius: var(--radius-md);
   transition: border-color var(--transition-fast), transform var(--transition-fast);
   position: relative;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .contact-method-item:hover {
@@ -1941,10 +2010,11 @@ ul {
 .method-main-link {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   text-decoration: none;
   flex: 1;
   min-width: 0;
+  overflow: hidden;
 }
 
 .method-main-link:hover .method-value {
@@ -1969,6 +2039,8 @@ ul {
   flex-direction: column;
   gap: 3px;
   min-width: 0;
+  flex: 1;
+  overflow: hidden;
 }
 
 .method-label {
@@ -1987,6 +2059,8 @@ ul {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  max-width: 100%;
+  display: block;
   transition: color var(--transition-fast);
 }
 
@@ -2084,6 +2158,7 @@ ul {
 .contact-socials-box {
   padding-top: 20px;
   border-top: 1px solid var(--border-subtle);
+  width: 100%;
 }
 
 .social-box-title {
@@ -2096,7 +2171,10 @@ ul {
 
 .social-links-list {
   display: flex;
-  gap: 12px;
+  gap: 10px;
+  flex-wrap: wrap;
+  width: 100%;
+  min-width: 0;
 }
 
 .social-circle-btn {
@@ -2112,6 +2190,7 @@ ul {
   font-size: 1.25rem;
   transition: all var(--transition-fast);
   text-decoration: none;
+  flex-shrink: 0;
 }
 
 .social-circle-btn:hover {
@@ -2127,12 +2206,18 @@ ul {
   display: flex;
   flex-direction: column;
   gap: 18px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
   gap: 6px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 .form-group label {
@@ -2145,6 +2230,10 @@ ul {
   position: relative;
   display: flex;
   align-items: center;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .input-icon {
@@ -2162,6 +2251,8 @@ ul {
 .input-wrap input,
 .input-wrap textarea {
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   padding: 13px 16px 13px 44px;
   background-color: var(--bg-input);
   border: 1px solid var(--border-subtle);
@@ -2589,30 +2680,47 @@ ul {
   /* About Grid */
   .about-grid {
     grid-template-columns: 1fr;
-    gap: 36px;
+    gap: 32px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .about-text-content {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
   }
 
   .about-visual-column {
     align-items: center;
     width: 100%;
+    max-width: 100%;
+    min-width: 0;
   }
 
   .about-photo-card {
     max-width: 280px;
     width: 100%;
     margin: 0 auto;
+    box-sizing: border-box;
   }
 
   .code-editor-card {
     width: 100%;
-    max-width: 600px;
+    max-width: 100%;
     margin: 0 auto;
     overflow-x: auto;
+    min-width: 0;
+    box-sizing: border-box;
   }
 
   /* Education & Resume */
   .education-card {
     padding: 24px 20px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .resume-showcase-content {
@@ -2632,17 +2740,33 @@ ul {
   .skills-categories-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+    width: 100%;
+    max-width: 100%;
   }
 
   .projects-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+    width: 100%;
+    max-width: 100%;
   }
 
   /* Contact */
   .contact-grid {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 28px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .contact-info-card,
+  .contact-form-card {
+    padding: 26px 20px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
   }
 }
 
@@ -2687,13 +2811,13 @@ ul {
 
   .skills-categories-grid {
     grid-template-columns: 1fr;
-    max-width: 480px;
+    max-width: 100%;
     margin: 0 auto;
   }
 
   .projects-grid {
     grid-template-columns: 1fr;
-    max-width: 480px;
+    max-width: 100%;
     margin: 0 auto;
     gap: 20px;
   }
@@ -2701,6 +2825,7 @@ ul {
   .about-quick-specs {
     grid-template-columns: 1fr;
     gap: 12px;
+    width: 100%;
   }
 
   .projects-cta-box .cta-inner {
@@ -2736,6 +2861,19 @@ ul {
 @media (max-width: 640px) {
   .section-container {
     padding: 0 16px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .about-headline {
+    font-size: 1.25rem;
+    word-break: break-word;
+  }
+
+  .about-paragraph {
+    font-size: 0.95rem;
+    word-break: break-word;
   }
 
   .hero-cta-group {
@@ -2753,6 +2891,9 @@ ul {
 
   .recruiter-pitch-card {
     padding: 20px 16px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .recruiter-pitch-card .pitch-grid {
@@ -2762,11 +2903,26 @@ ul {
 
   .pitch-item {
     text-align: left;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .gateways-grid {
     grid-template-columns: 1fr;
     gap: 14px;
+    width: 100%;
+  }
+
+  .code-editor-card {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+  }
+
+  .editor-code {
+    padding: 14px 12px;
+    font-size: 0.78rem;
   }
 
   .projects-filter-bar {
@@ -2813,18 +2969,27 @@ ul {
 
   .contact-info-card,
   .contact-form-card {
-    padding: 20px 16px;
+    padding: 20px 14px;
+    border-radius: var(--radius-md);
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
   }
 
   .contact-method-item {
     padding: 10px 12px;
-    gap: 8px;
+    gap: 10px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .method-icon {
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     font-size: 1.1rem;
+    flex-shrink: 0;
   }
 
   .method-label {
@@ -2833,14 +2998,23 @@ ul {
 
   .method-value {
     font-size: 0.84rem;
-    word-break: break-all;
-    overflow-wrap: anywhere;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
   }
 
   .copy-inline-btn,
   .open-external-btn {
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+  }
+
+  .social-circle-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.15rem;
   }
 
   .form-submit-row {
@@ -2849,9 +3023,13 @@ ul {
     gap: 10px;
   }
 
-  .form-submit-row .btn {
+  .form-submit-row .btn,
+  .form-submit-row .btn-whatsapp,
+  .form-submit-row .btn-telegram {
     width: 100%;
+    max-width: 100%;
     justify-content: center;
+    box-sizing: border-box;
     text-align: center;
   }
 
