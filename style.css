@@ -1,18 +1,13 @@
-/* ==========================================================================
-   PORTFOLIO STYLESHEET - SYED NOOR UL ABSAR
-   Frontend Web Developer | BCA @ Chandigarh University
-   ========================================================================== */
 
-/* --- CSS Variables & Theme Tokens --- */
 :root {
-  /* Dark Theme (Default) */
+
   --bg-primary: #0a0d14;
   --bg-secondary: #0f172a;
   --bg-card: rgba(17, 24, 39, 0.75);
   --bg-card-hover: rgba(30, 41, 59, 0.85);
   --bg-glass: rgba(15, 23, 42, 0.65);
   --bg-input: #111827;
-  
+
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-focus: #06b6d4;
   --border-card: rgba(255, 255, 255, 0.1);
@@ -22,7 +17,6 @@
   --text-muted: #64748b;
   --text-invert: #0a0d14;
 
-  /* Accent Gradients & Colors */
   --accent-cyan: #06b6d4;
   --accent-indigo: #6366f1;
   --accent-emerald: #10b981;
@@ -30,22 +24,18 @@
   --accent-glow: rgba(6, 182, 212, 0.25);
   --indigo-glow: rgba(99, 102, 241, 0.2);
 
-  /* Shadows */
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
   --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
   --shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.45);
   --shadow-glow: 0 0 25px rgba(6, 182, 212, 0.2);
 
-  /* Fonts */
   --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  /* Transitions */
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
   --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 
-  /* Spacing & Sizes */
   --nav-height: 74px;
   --radius-sm: 8px;
   --radius-md: 14px;
@@ -53,7 +43,6 @@
   --radius-pill: 9999px;
 }
 
-/* Light Theme Overrides */
 [data-theme="light"] {
   --bg-primary: #f8fafc;
   --bg-secondary: #f1f5f9;
@@ -83,7 +72,6 @@
   --shadow-lg: 0 16px 36px rgba(15, 23, 42, 0.12);
 }
 
-/* --- Base & Reset --- */
 *, *::before, *::after {
   margin: 0;
   padding: 0;
@@ -110,7 +98,6 @@ body {
   transition: background-color var(--transition-normal), color var(--transition-normal);
 }
 
-/* Subtle background accent glow */
 body::before {
   content: '';
   position: fixed;
@@ -150,7 +137,6 @@ ul {
   list-style: none;
 }
 
-/* --- Navigation Bar --- */
 .navbar {
   position: fixed;
   top: 0;
@@ -306,7 +292,6 @@ ul {
   box-shadow: 0 4px 12px var(--accent-glow);
 }
 
-/* Theme Icon Switcher */
 .theme-icon-sun {
   display: none;
 }
@@ -325,7 +310,6 @@ ul {
   display: none;
 }
 
-/* --- Multi-Page System --- */
 .page-view {
   display: none;
   opacity: 0;
@@ -353,12 +337,10 @@ ul {
   }
 }
 
-/* Home Page Specific padding */
 #page-home {
   padding-top: 0;
 }
 
-/* Home Gateways Section */
 .home-gateways-section {
   padding: 40px 0 80px;
 }
@@ -435,7 +417,6 @@ ul {
   gap: 10px;
 }
 
-/* --- Hero Section --- */
 .hero-section {
   padding-top: calc(var(--nav-height) + 40px);
   padding-bottom: 80px;
@@ -454,7 +435,6 @@ ul {
   align-items: center;
 }
 
-/* Status Pill */
 .badge-pill {
   display: inline-flex;
   align-items: center;
@@ -551,7 +531,6 @@ ul {
   color: var(--text-primary);
 }
 
-/* Hero CTA Group */
 .hero-cta-group {
   display: flex;
   align-items: center;
@@ -560,7 +539,6 @@ ul {
   margin-bottom: 40px;
 }
 
-/* Button Component Styles */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -631,7 +609,6 @@ ul {
   width: 100%;
 }
 
-/* Hero Recruiter Stats */
 .hero-stats-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -662,7 +639,6 @@ ul {
   margin-top: 4px;
 }
 
-/* Visual Profile Card */
 .hero-visual {
   display: flex;
   justify-content: center;
@@ -771,7 +747,6 @@ ul {
   color: var(--text-secondary);
 }
 
-/* --- Home Recruiter Pitch & Gateways --- */
 .home-gateways-section {
   padding-top: 0;
   padding-bottom: 90px;
@@ -865,7 +840,6 @@ ul {
   gap: 6px;
 }
 
-/* Gateways Navigation Grid */
 .gateways-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -938,7 +912,6 @@ ul {
   gap: 8px;
 }
 
-/* --- Section General Layout --- */
 .section {
   padding: 90px 0;
   position: relative;
@@ -995,7 +968,6 @@ ul {
   margin: 16px auto 0;
 }
 
-/* --- About Section --- */
 .about-grid {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
@@ -1083,7 +1055,6 @@ ul {
   color: var(--accent-cyan);
 }
 
-/* --- About Visual Column & Circular Photo Card --- */
 .about-visual-column {
   display: flex;
   flex-direction: column;
@@ -1163,7 +1134,6 @@ ul {
   font-size: 0.85rem;
 }
 
-/* Code Editor Card */
 .code-editor-card {
   background: #0d1117;
   border: 1px solid var(--border-subtle);
@@ -1246,7 +1216,6 @@ ul {
 .code-number { color: #79c0ff; }
 .code-boolean { color: #ff7b72; }
 
-/* --- Education Section --- */
 .education-card-wrapper {
   max-width: 960px;
   margin: 0 auto;
@@ -1373,7 +1342,6 @@ ul {
   margin-top: 2px;
 }
 
-/* Resume Showcase Card */
 .resume-showcase-card {
   margin-top: 28px;
   background: var(--bg-card);
@@ -1454,7 +1422,6 @@ ul {
   flex-wrap: wrap;
 }
 
-/* --- Skills Section --- */
 .skills-categories-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -1573,8 +1540,6 @@ ul {
 .fill-85 { width: 85%; }
 .fill-80 { width: 80%; }
 
-/* --- Projects Section --- */
-/* Projects Search Bar */
 .projects-search-wrapper {
   max-width: 620px;
   margin: 0 auto 30px;
@@ -1691,14 +1656,12 @@ ul {
   color: #ffffff;
 }
 
-/* Projects Grid */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 24px;
 }
 
-/* Empty Projects State */
 .no-projects-found {
   grid-column: 1 / -1;
   text-align: center;
@@ -1727,7 +1690,6 @@ ul {
   margin: 0 auto 20px;
 }
 
-/* Single Project Card */
 .project-card {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
@@ -1803,8 +1765,6 @@ ul {
   opacity: 0.8;
 }
 
-
-
 .project-body {
   padding: 24px;
   display: flex;
@@ -1860,7 +1820,6 @@ ul {
   flex: 1;
 }
 
-/* Projects CTA Box */
 .projects-cta-box {
   margin-top: 56px;
   background: var(--bg-card);
@@ -1889,7 +1848,6 @@ ul {
   font-size: 0.95rem;
 }
 
-/* --- Recruiter Section --- */
 .recruiter-cards-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1935,7 +1893,6 @@ ul {
   line-height: 1.65;
 }
 
-/* --- Contact Section --- */
 .contact-grid {
   display: grid;
   grid-template-columns: 0.9fr 1.1fr;
@@ -2122,7 +2079,6 @@ ul {
   transform: translateX(50%) translateY(-2px);
 }
 
-/* WhatsApp & Telegram Theming */
 .whatsapp-item:hover {
   border-color: #25D366;
 }
@@ -2201,7 +2157,6 @@ ul {
   box-shadow: 0 4px 12px var(--accent-glow);
 }
 
-/* Contact Form */
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -2280,7 +2235,6 @@ ul {
   min-height: 16px;
 }
 
-/* Form Action Buttons Row */
 .form-submit-row {
   display: flex;
   align-items: center;
@@ -2381,7 +2335,6 @@ ul {
   to { transform: rotate(360deg); }
 }
 
-/* Toast Message */
 .toast-box {
   margin-top: 16px;
   padding: 14px 18px;
@@ -2430,7 +2383,6 @@ ul {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- Footer --- */
 .footer {
   background-color: var(--bg-secondary);
   border-top: 1px solid var(--border-subtle);
@@ -2519,15 +2471,11 @@ ul {
   transform: translateY(-2px);
 }
 
-/* --- Responsive Media Queries --- */
-
-/* 1. Tablets & iPads & Small Laptops (<= 992px) */
 @media (max-width: 992px) {
   .section {
     padding: 60px 0;
   }
 
-  /* Solid Opaque Hamburger Mobile Drawer for all Tablets & Mobiles */
   .mobile-toggle-btn {
     display: flex;
   }
@@ -2538,7 +2486,7 @@ ul {
     left: 0;
     right: 0;
     width: 100%;
-    background-color: #0b0f19 !important; /* 100% Solid Opaque Dark Mode */
+    background-color: #0b0f19 !important; 
     border-bottom: 2px solid var(--accent-cyan);
     border-top: 1px solid var(--border-subtle);
     padding: 20px 20px 28px;
@@ -2554,7 +2502,7 @@ ul {
   }
 
   [data-theme="light"] .nav-menu {
-    background-color: #ffffff !important; /* 100% Solid Opaque Light Mode */
+    background-color: #ffffff !important; 
     border-bottom: 2px solid var(--accent-cyan);
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
   }
@@ -2604,7 +2552,7 @@ ul {
   }
 
   .nav-link::after {
-    display: none !important; /* Remove desktop underline indicator */
+    display: none !important; 
   }
 
   .nav-resume-pill {
@@ -2616,7 +2564,6 @@ ul {
     box-shadow: 0 4px 14px var(--accent-glow);
   }
 
-  /* Hero Section */
   .hero-section {
     padding-top: calc(var(--nav-height) + 30px);
     padding-bottom: 60px;
@@ -2665,19 +2612,16 @@ ul {
     width: 100%;
   }
 
-  /* Recruiter Pitch Card */
   .recruiter-pitch-card .pitch-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 14px 18px;
   }
 
-  /* Gateways */
   .gateways-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 18px;
   }
 
-  /* About Grid */
   .about-grid {
     grid-template-columns: 1fr;
     gap: 32px;
@@ -2715,7 +2659,6 @@ ul {
     box-sizing: border-box;
   }
 
-  /* Education & Resume */
   .education-card {
     padding: 24px 20px;
     width: 100%;
@@ -2736,7 +2679,6 @@ ul {
     flex-wrap: wrap;
   }
 
-  /* Skills & Projects */
   .skills-categories-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
@@ -2751,7 +2693,6 @@ ul {
     max-width: 100%;
   }
 
-  /* Contact */
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 28px;
@@ -2770,7 +2711,6 @@ ul {
   }
 }
 
-/* 2. Small Tablets & Landscape Mobiles (<= 768px) */
 @media (max-width: 768px) {
   .section {
     padding: 50px 0;
@@ -2806,7 +2746,7 @@ ul {
   }
 
   .edu-icon-col {
-    display: none; /* Hide icon column on mobile to give room to academic details */
+    display: none; 
   }
 
   .skills-categories-grid {
@@ -2857,7 +2797,6 @@ ul {
   }
 }
 
-/* 3. Standard Mobile Phones (<= 640px) */
 @media (max-width: 640px) {
   .section-container {
     padding: 0 16px;
@@ -3039,7 +2978,6 @@ ul {
   }
 }
 
-/* 4. Compact Mobile Phones (<= 440px) */
 @media (max-width: 440px) {
   .logo-name {
     font-size: 1.1rem;

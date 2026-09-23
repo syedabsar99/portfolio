@@ -1,12 +1,3 @@
-// ==========================================================================
-// Portfolio Script - Syed Noor Ul Absar
-// Frontend Web Developer | BCA Graduate from Chandigarh University
-// Simple, clean, humanized Vanilla JavaScript
-// ==========================================================================
-
-// --------------------------------------------------------------------------
-// 1. Projects Data List (All 12 projects from github.com/syedabsar99)
-// --------------------------------------------------------------------------
 const projects = [
   {
     title: "Music Player",
@@ -85,7 +76,7 @@ const projects = [
     description: "Artisanal e-commerce frontend showcasing handcrafted Kashmiri shawls, product catalogs, collection highlights, and mobile responsiveness.",
     category: "landing-pages",
     icon: "ri-shopping-bag-3-line",
-    tags: ["HTML", "CSS", "JavaScript", "Vercel"],
+    tags: ["HTML", "CSS", "Tailwind CSS", "JavaScript"],
     githubUrl: "https://github.com/syedabsar99/kashmir-shawl-store",
     demoUrl: "https://kashmir-shawl-store.vercel.app"
   },
@@ -118,9 +109,6 @@ const projects = [
   }
 ];
 
-// --------------------------------------------------------------------------
-// 2. DOM Elements & State
-// --------------------------------------------------------------------------
 const projectsGrid = document.getElementById("projects-grid");
 const filterButtons = document.querySelectorAll(".filter-btn");
 const projectSearchInput = document.getElementById("project-search-input");
@@ -134,17 +122,14 @@ const backToTopBtn = document.getElementById("back-to-top-btn");
 const contactForm = document.getElementById("contact-form");
 const formSubmitBtn = document.getElementById("form-submit-btn");
 const whatsappQuickBtn = document.getElementById("whatsapp-quick-btn");
+const gmailWebBtn = document.getElementById("gmail-web-btn");
 const toastBox = document.getElementById("toast-box");
 const toastMessage = document.getElementById("toast-message");
 const currentYearSpan = document.getElementById("current-year");
 
-// Active filters state
 let activeCategoryFilter = "all";
 let activeSearchQuery = "";
 
-// --------------------------------------------------------------------------
-// 3. Simple Multi-Page Navigation Router
-// --------------------------------------------------------------------------
 const validPages = ["home", "about", "education", "skills", "projects", "contact"];
 
 function showPage(pageName) {
@@ -152,19 +137,14 @@ function showPage(pageName) {
     pageName = "home";
   }
 
-  // Hide all page views
   const pageViews = document.querySelectorAll(".page-view");
-  pageViews.forEach(page => {
-    page.classList.remove("active");
-  });
+  pageViews.forEach(page => page.classList.remove("active"));
 
-  // Activate the selected page view
   const targetPage = document.getElementById("page-" + pageName);
   if (targetPage) {
     targetPage.classList.add("active");
   }
 
-  // Update active status on nav menu items
   document.querySelectorAll(".nav-link[data-page]").forEach(link => {
     if (link.getAttribute("data-page") === pageName) {
       link.classList.add("active");
@@ -173,7 +153,6 @@ function showPage(pageName) {
     }
   });
 
-  // Update footer links active style
   document.querySelectorAll(".footer-links a[data-page]").forEach(link => {
     if (link.getAttribute("data-page") === pageName) {
       link.style.color = "var(--accent-cyan)";
@@ -182,226 +161,124 @@ function showPage(pageName) {
     }
   });
 
-  // Update URL hash
   if (window.location.hash !== "#" + pageName) {
     window.location.hash = pageName;
   }
 
-  // Smooth scroll to top for fresh page feel
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-// Click listener for all page navigation triggers
-document.addEventListener("click", function(event) {
-  const trigger = event.target.closest("[data-page]");
+document.addEventListener("click", function (e) {
+  const trigger = e.target.closest("[data-page]");
   if (trigger) {
     const page = trigger.getAttribute("data-page");
     if (validPages.includes(page)) {
-      event.preventDefault();
+      e.preventDefault();
       showPage(page);
-
-      // Close mobile menu if open
-      navMenu.classList.remove("open");
-      if (mobileMenuIcon) {
-        mobileMenuIcon.className = "ri-menu-4-line";
-      }
+      if (navMenu) navMenu.classList.remove("open");
+      if (mobileMenuIcon) mobileMenuIcon.className = "ri-menu-4-line";
     }
   }
 });
 
-// Hashchange handler for browser Back / Forward buttons & direct links
-window.addEventListener("hashchange", () => {
+window.addEventListener("hashchange", function () {
   const hash = window.location.hash.replace("#", "").toLowerCase();
   if (hash && validPages.includes(hash)) {
     showPage(hash);
   }
 });
 
-// --------------------------------------------------------------------------
-// 4. Render Projects Card Function (Real-Time Search + Category Filter)
-// --------------------------------------------------------------------------
 function renderProjects() {
   if (!projectsGrid) return;
-  projectsGrid.replaceChildren();
 
   const query = activeSearchQuery.trim().toLowerCase();
 
-  // Filter projects by category AND search query
-  const filteredProjects = projects.filter(project => {
-    // 1. Category check
-    const matchesCategory = activeCategoryFilter === "all" || project.category === activeCategoryFilter;
-    if (!matchesCategory) return false;
-
-    // 2. Search query check (title, description, tags)
+  const filtered = projects.filter(project => {
+    const matchCat = activeCategoryFilter === "all" || project.category === activeCategoryFilter;
+    if (!matchCat) return false;
     if (!query) return true;
-    const titleMatch = project.title.toLowerCase().includes(query);
-    const descMatch = project.description.toLowerCase().includes(query);
-    const tagsMatch = project.tags.some(tag => tag.toLowerCase().includes(query));
-    return titleMatch || descMatch || tagsMatch;
+    return project.title.toLowerCase().includes(query) ||
+      project.description.toLowerCase().includes(query) ||
+      project.tags.some(tag => tag.toLowerCase().includes(query));
   });
 
-  // Calculate and update category tab counter badges based on current search query
-  const allMatching = projects.filter(p => !query || p.title.toLowerCase().includes(query) || p.description.toLowerCase().includes(query) || p.tags.some(t => t.toLowerCase().includes(query))).length;
-  const jsMatching = projects.filter(p => p.category === "javascript" && (!query || p.title.toLowerCase().includes(query) || p.description.toLowerCase().includes(query) || p.tags.some(t => t.toLowerCase().includes(query)))).length;
-  const uiMatching = projects.filter(p => p.category === "landing-pages" && (!query || p.title.toLowerCase().includes(query) || p.description.toLowerCase().includes(query) || p.tags.some(t => t.toLowerCase().includes(query)))).length;
+  const countAll = projects.filter(p => !query || p.title.toLowerCase().includes(query) || p.description.toLowerCase().includes(query) || p.tags.some(t => t.toLowerCase().includes(query))).length;
+  const countJs = projects.filter(p => p.category === "javascript" && (!query || p.title.toLowerCase().includes(query) || p.description.toLowerCase().includes(query) || p.tags.some(t => t.toLowerCase().includes(query)))).length;
+  const countUi = projects.filter(p => p.category === "landing-pages" && (!query || p.title.toLowerCase().includes(query) || p.description.toLowerCase().includes(query) || p.tags.some(t => t.toLowerCase().includes(query)))).length;
 
   const countAllEl = document.getElementById("count-all");
   const countJsEl = document.getElementById("count-js");
   const countUiEl = document.getElementById("count-ui");
-  if (countAllEl) countAllEl.textContent = allMatching;
-  if (countJsEl) countJsEl.textContent = jsMatching;
-  if (countUiEl) countUiEl.textContent = uiMatching;
+  if (countAllEl) countAllEl.textContent = countAll;
+  if (countJsEl) countJsEl.textContent = countJs;
+  if (countUiEl) countUiEl.textContent = countUi;
 
-  // Render empty state if no projects match
-  if (filteredProjects.length === 0) {
-    const emptyState = document.createElement("div");
-    emptyState.className = "no-projects-found";
-    
-    const emptyIcon = document.createElement("div");
-    emptyIcon.className = "empty-icon";
-    emptyIcon.innerHTML = `<i class="ri-search-eye-line"></i>`;
-
-    const emptyTitle = document.createElement("h3");
-    emptyTitle.className = "empty-title";
-    emptyTitle.textContent = "No matching projects found";
-
-    const emptyDesc = document.createElement("p");
-    emptyDesc.className = "empty-desc";
-    emptyDesc.textContent = `No project matched "${activeSearchQuery}". Try searching for keywords like "Music", "API", "LocalStorage", or "Clone".`;
-
-    const resetBtn = document.createElement("button");
-    resetBtn.type = "button";
-    resetBtn.className = "btn btn-secondary btn-sm";
-    resetBtn.innerHTML = `<i class="ri-refresh-line"></i> <span>Reset Filters</span>`;
-    resetBtn.addEventListener("click", () => {
-      if (projectSearchInput) projectSearchInput.value = "";
-      activeSearchQuery = "";
-      if (clearSearchBtn) clearSearchBtn.style.display = "none";
-      activeCategoryFilter = "all";
-      filterButtons.forEach(btn => {
-        btn.classList.toggle("active", btn.getAttribute("data-filter") === "all");
+  if (filtered.length === 0) {
+    projectsGrid.innerHTML = `
+      <div class="no-projects-found">
+        <div class="empty-icon"><i class="ri-search-eye-line"></i></div>
+        <h3 class="empty-title">No matching projects found</h3>
+        <p class="empty-desc">No project matched "${activeSearchQuery}". Try another keyword.</p>
+        <button type="button" class="btn btn-secondary btn-sm" id="reset-filter-btn">
+          <i class="ri-refresh-line"></i> <span>Reset Filters</span>
+        </button>
+      </div>
+    `;
+    const resetBtn = document.getElementById("reset-filter-btn");
+    if (resetBtn) {
+      resetBtn.addEventListener("click", function () {
+        if (projectSearchInput) projectSearchInput.value = "";
+        activeSearchQuery = "";
+        if (clearSearchBtn) clearSearchBtn.style.display = "none";
+        activeCategoryFilter = "all";
+        filterButtons.forEach(btn => btn.classList.toggle("active", btn.getAttribute("data-filter") === "all"));
+        renderProjects();
       });
-      renderProjects();
-    });
-
-    emptyState.appendChild(emptyIcon);
-    emptyState.appendChild(emptyTitle);
-    emptyState.appendChild(emptyDesc);
-    emptyState.appendChild(resetBtn);
-    projectsGrid.appendChild(emptyState);
+    }
     return;
   }
 
-  // Render Project Cards
-  filteredProjects.forEach(project => {
-    // Card element
-    const card = document.createElement("div");
-    card.classList.add("project-card");
-
-    // Banner Top
-    const banner = document.createElement("div");
-    banner.classList.add("project-banner");
-
-    const categoryBadge = document.createElement("span");
-    categoryBadge.classList.add("project-category-badge");
-    categoryBadge.textContent = project.category === "javascript" ? "JavaScript App" : "Landing Page";
-
-    const iconIndicator = document.createElement("i");
-    iconIndicator.className = `${project.icon} project-icon-indicator`;
-
-    banner.appendChild(categoryBadge);
-    banner.appendChild(iconIndicator);
-
-    // Card Body
-    const body = document.createElement("div");
-    body.classList.add("project-body");
-
-    const title = document.createElement("h3");
-    title.classList.add("project-title");
-    title.textContent = project.title;
-
-    const desc = document.createElement("p");
-    desc.classList.add("project-desc");
-    desc.textContent = project.description;
-
-    // Tech Tags List
-    const tagsContainer = document.createElement("div");
-    tagsContainer.classList.add("project-tags");
-    project.tags.forEach(tagText => {
-      const tag = document.createElement("span");
-      tag.classList.add("project-tag");
-      tag.textContent = tagText;
-      tagsContainer.appendChild(tag);
-    });
-
-    // Action Buttons
-    const actions = document.createElement("div");
-    actions.classList.add("project-actions");
-
-    if (project.demoUrl) {
-      const demoBtn = document.createElement("a");
-      demoBtn.href = project.demoUrl;
-      demoBtn.target = "_blank";
-      demoBtn.rel = "noopener noreferrer";
-      demoBtn.classList.add("btn", "btn-primary", "btn-sm");
-      
-      const demoSpan = document.createElement("span");
-      demoSpan.textContent = "Live Demo";
-      const demoIcon = document.createElement("i");
-      demoIcon.classList.add("ri-external-link-line");
-
-      demoBtn.appendChild(demoSpan);
-      demoBtn.appendChild(demoIcon);
-      actions.appendChild(demoBtn);
-    }
-
-    const codeBtn = document.createElement("a");
-    codeBtn.href = project.githubUrl;
-    codeBtn.target = "_blank";
-    codeBtn.rel = "noopener noreferrer";
-    codeBtn.classList.add("btn", "btn-secondary", "btn-sm");
-
-    const codeSpan = document.createElement("span");
-    codeSpan.textContent = "GitHub";
-    const codeIcon = document.createElement("i");
-    codeIcon.classList.add("ri-github-fill");
-
-    codeBtn.appendChild(codeIcon);
-    codeBtn.appendChild(codeSpan);
-    actions.appendChild(codeBtn);
-
-    // Assemble Card
-    body.appendChild(title);
-    body.appendChild(desc);
-    body.appendChild(tagsContainer);
-    body.appendChild(actions);
-
-    card.appendChild(banner);
-    card.appendChild(body);
-
-    projectsGrid.appendChild(card);
-  });
+  projectsGrid.innerHTML = filtered.map(project => `
+    <div class="project-card">
+      <div class="project-banner">
+        <span class="project-category-badge">${project.category === "javascript" ? "JavaScript App" : "Landing Page"}</span>
+        <i class="${project.icon} project-icon-indicator"></i>
+      </div>
+      <div class="project-body">
+        <h3 class="project-title">${project.title}</h3>
+        <p class="project-desc">${project.description}</p>
+        <div class="project-tags">
+          ${project.tags.map(tag => `<span class="project-tag">${tag}</span>`).join("")}
+        </div>
+        <div class="project-actions">
+          ${project.demoUrl ? `
+            <a href="${project.demoUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+              <span>Live Demo</span>
+              <i class="ri-external-link-line"></i>
+            </a>
+          ` : ""}
+          <a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+            <i class="ri-github-fill"></i>
+            <span>GitHub</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  `).join("");
 }
 
-// --------------------------------------------------------------------------
-// 5. Project Filter Tabs & Real-Time Search Handlers
-// --------------------------------------------------------------------------
 filterButtons.forEach(button => {
-  button.addEventListener("click", () => {
+  button.addEventListener("click", function () {
     filterButtons.forEach(btn => btn.classList.remove("active"));
     button.classList.add("active");
-
     activeCategoryFilter = button.getAttribute("data-filter");
     renderProjects();
   });
 });
 
 if (projectSearchInput) {
-  projectSearchInput.addEventListener("input", (event) => {
-    activeSearchQuery = event.target.value;
+  projectSearchInput.addEventListener("input", function (e) {
+    activeSearchQuery = e.target.value;
     if (clearSearchBtn) {
       clearSearchBtn.style.display = activeSearchQuery ? "flex" : "none";
     }
@@ -410,7 +287,7 @@ if (projectSearchInput) {
 }
 
 if (clearSearchBtn) {
-  clearSearchBtn.addEventListener("click", () => {
+  clearSearchBtn.addEventListener("click", function () {
     if (projectSearchInput) {
       projectSearchInput.value = "";
       projectSearchInput.focus();
@@ -421,16 +298,12 @@ if (clearSearchBtn) {
   });
 }
 
-
-// --------------------------------------------------------------------------
-// 6. Typewriter Intro Animation (Synchronized with "I build...")
-// --------------------------------------------------------------------------
 const typewriterTextElement = document.getElementById("typewriter-text");
 const phrases = [
-  "clean, responsive web interfaces.",
-  "interactive JavaScript web applications.",
-  "pixel-perfect UI & landing page clones.",
-  "modern, performant frontend experiences."
+  "responsive web apps with HTML, CSS & JavaScript.",
+  "modern UI designs with Tailwind CSS & Bootstrap 5.",
+  "interactive client-side JavaScript applications.",
+  "pixel-perfect responsive UI clones."
 ];
 
 let phraseIndex = 0;
@@ -453,85 +326,65 @@ function runTypewriter() {
     typeSpeed = 85;
   }
 
-  // Once phrase is fully typed
   if (!isDeleting && charIndex === currentPhrase.length) {
     isDeleting = true;
-    typeSpeed = 1900; // Pause at end of phrase
+    typeSpeed = 1900;
   } else if (isDeleting && charIndex === 0) {
     isDeleting = false;
     phraseIndex = (phraseIndex + 1) % phrases.length;
-    typeSpeed = 400; // Brief pause before typing next phrase
+    typeSpeed = 400;
   }
 
   setTimeout(runTypewriter, typeSpeed);
 }
 
-// --------------------------------------------------------------------------
-// 7. Dark / Light Theme Toggle with LocalStorage
-// --------------------------------------------------------------------------
 function initTheme() {
-  const savedTheme = localStorage.getItem("syed-portfolio-theme");
-  if (savedTheme) {
-    document.documentElement.setAttribute("data-theme", savedTheme);
-  } else {
-    document.documentElement.setAttribute("data-theme", "dark");
-  }
+  const savedTheme = localStorage.getItem("syed-portfolio-theme") || "dark";
+  document.documentElement.setAttribute("data-theme", savedTheme);
 }
 
-themeToggleBtn.addEventListener("click", () => {
-  const currentTheme = document.documentElement.getAttribute("data-theme");
-  const newTheme = currentTheme === "light" ? "dark" : "light";
-  
-  document.documentElement.setAttribute("data-theme", newTheme);
-  localStorage.setItem("syed-portfolio-theme", newTheme);
-});
-
-// --------------------------------------------------------------------------
-// 8. Mobile Navigation Drawer Toggle
-// --------------------------------------------------------------------------
-mobileToggleBtn.addEventListener("click", () => {
-  navMenu.classList.toggle("open");
-  const isOpen = navMenu.classList.contains("open");
-  
-  if (isOpen) {
-    mobileMenuIcon.className = "ri-close-line";
-  } else {
-    mobileMenuIcon.className = "ri-menu-4-line";
-  }
-});
-
-// --------------------------------------------------------------------------
-// 9. Sticky Navbar on Scroll
-// --------------------------------------------------------------------------
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 30) {
-    navbar.classList.add("scrolled");
-  } else {
-    navbar.classList.remove("scrolled");
-  }
-});
-
-// --------------------------------------------------------------------------
-// 10. Back to Top Button
-// --------------------------------------------------------------------------
-backToTopBtn.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
+if (themeToggleBtn) {
+  themeToggleBtn.addEventListener("click", function () {
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+    const newTheme = currentTheme === "light" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", newTheme);
+    localStorage.setItem("syed-portfolio-theme", newTheme);
   });
+}
+
+if (mobileToggleBtn) {
+  mobileToggleBtn.addEventListener("click", function () {
+    navMenu.classList.toggle("open");
+    const isOpen = navMenu.classList.contains("open");
+    if (mobileMenuIcon) {
+      mobileMenuIcon.className = isOpen ? "ri-close-line" : "ri-menu-4-line";
+    }
+  });
+}
+
+window.addEventListener("scroll", function () {
+  if (navbar) {
+    if (window.scrollY > 30) {
+      navbar.classList.add("scrolled");
+    } else {
+      navbar.classList.remove("scrolled");
+    }
+  }
 });
 
-// --------------------------------------------------------------------------
-// 11. 1-Click Clipboard Copy Buttons
-// --------------------------------------------------------------------------
+if (backToTopBtn) {
+  backToTopBtn.addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
 function initCopyButtons() {
   document.querySelectorAll(".copy-inline-btn").forEach(btn => {
-    btn.addEventListener("click", async () => {
+    btn.addEventListener("click", function () {
       const textToCopy = btn.getAttribute("data-copy");
       if (!textToCopy) return;
 
-      try {
-        await navigator.clipboard.writeText(textToCopy);
+      navigator.clipboard.writeText(textToCopy).then(function () {
         const tooltip = btn.querySelector(".copy-tooltip");
         const icon = btn.querySelector("i");
         const originalIconClass = icon ? icon.className : "ri-file-copy-line";
@@ -541,162 +394,122 @@ function initCopyButtons() {
         if (tooltip) tooltip.textContent = "Copied!";
         if (icon) icon.className = "ri-check-line";
 
-        setTimeout(() => {
+        setTimeout(function () {
           btn.classList.remove("copied");
           if (tooltip) tooltip.textContent = originalTooltipText;
           if (icon) icon.className = originalIconClass;
         }, 2200);
-      } catch (err) {
-        console.warn("Clipboard write failed, using fallback:", err);
-        // Fallback for older browsers
-        const tempInput = document.createElement("input");
-        tempInput.value = textToCopy;
-        document.body.appendChild(tempInput);
-        tempInput.select();
-        document.execCommand("copy");
-        document.body.removeChild(tempInput);
-      }
+      });
     });
   });
 }
 
-// --------------------------------------------------------------------------
-// 12. Dynamic WhatsApp Link Sync (Prefills user's message)
-// --------------------------------------------------------------------------
+const nameInputEl = document.getElementById("contact-name");
+const emailInputEl = document.getElementById("contact-email");
+const subjectInputEl = document.getElementById("contact-subject");
 const messageInputEl = document.getElementById("contact-message");
-if (messageInputEl && whatsappQuickBtn) {
-  messageInputEl.addEventListener("input", () => {
-    const userText = messageInputEl.value.trim();
-    if (userText) {
-      whatsappQuickBtn.href = `https://wa.me/919622497806?text=${encodeURIComponent("Hi Syed, " + userText)}`;
+
+function updateContactLinks() {
+  const name = nameInputEl ? nameInputEl.value.trim() : "";
+  const email = emailInputEl ? emailInputEl.value.trim() : "";
+  const subject = subjectInputEl ? subjectInputEl.value.trim() : "";
+  const message = messageInputEl ? messageInputEl.value.trim() : "";
+
+  if (whatsappQuickBtn) {
+    if (message) {
+      whatsappQuickBtn.href = "https://wa.me/919622497806?text=" + encodeURIComponent("Hi Syed, " + message + (name ? " (From " + name + ")" : ""));
     } else {
       whatsappQuickBtn.href = "https://wa.me/919622497806?text=Hi%20Syed,%20I%20came%20across%20your%20portfolio%20and%20wanted%20to%20connect!";
     }
-  });
+  }
+
+  if (gmailWebBtn) {
+    const sub = subject || "Portfolio Inquiry";
+    const body = (name ? "Name: " + name + "\n" : "") + (email ? "Email: " + email + "\n\n" : "") + message;
+    gmailWebBtn.href = "https://mail.google.com/mail/?view=cm&fs=1&to=syedabsar99@gmail.com&su=" + encodeURIComponent(sub) + "&body=" + encodeURIComponent(body);
+  }
 }
 
-// --------------------------------------------------------------------------
-// 13. Real Contact Form Submission via FormSubmit AJAX + Direct WhatsApp Fallback
-// --------------------------------------------------------------------------
-if (contactForm) {
-  contactForm.addEventListener("submit", async function(event) {
-    event.preventDefault();
+[nameInputEl, emailInputEl, subjectInputEl, messageInputEl].forEach(input => {
+  if (input) {
+    input.addEventListener("input", updateContactLinks);
+  }
+});
 
-    const nameInput = document.getElementById("contact-name");
-    const emailInput = document.getElementById("contact-email");
-    const subjectInput = document.getElementById("contact-subject");
-    const messageInput = document.getElementById("contact-message");
+if (contactForm) {
+  contactForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const name = nameInputEl ? nameInputEl.value.trim() : "";
+    const email = emailInputEl ? emailInputEl.value.trim() : "";
+    const subject = subjectInputEl ? subjectInputEl.value.trim() : "";
+    const message = messageInputEl ? messageInputEl.value.trim() : "";
 
     const nameError = document.getElementById("name-error");
     const emailError = document.getElementById("email-error");
     const subjectError = document.getElementById("subject-error");
     const messageError = document.getElementById("message-error");
 
-    // Reset errors
-    nameError.textContent = "";
-    emailError.textContent = "";
-    subjectError.textContent = "";
-    messageError.textContent = "";
+    if (nameError) nameError.textContent = "";
+    if (emailError) emailError.textContent = "";
+    if (subjectError) subjectError.textContent = "";
+    if (messageError) messageError.textContent = "";
 
-    let isValid = true;
+    let hasError = false;
 
-    if (nameInput.value.trim() === "") {
-      nameError.textContent = "Please enter your name.";
-      isValid = false;
+    if (!name) {
+      if (nameError) nameError.textContent = "Please enter your name.";
+      hasError = true;
     }
 
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (emailInput.value.trim() === "") {
-      emailError.textContent = "Please enter your email address.";
-      isValid = false;
-    } else if (!emailPattern.test(emailInput.value.trim())) {
-      emailError.textContent = "Please enter a valid email address.";
-      isValid = false;
+    if (!email) {
+      if (emailError) emailError.textContent = "Please enter your email.";
+      hasError = true;
+    } else if (!emailPattern.test(email)) {
+      if (emailError) emailError.textContent = "Please enter a valid email address.";
+      hasError = true;
     }
 
-    if (subjectInput.value.trim() === "") {
-      subjectError.textContent = "Please enter a subject.";
-      isValid = false;
+    if (!subject) {
+      if (subjectError) subjectError.textContent = "Please enter a subject.";
+      hasError = true;
     }
 
-    if (messageInput.value.trim() === "") {
-      messageError.textContent = "Please write a brief message.";
-      isValid = false;
+    if (!message) {
+      if (messageError) messageError.textContent = "Please enter your message.";
+      hasError = true;
     }
 
-    if (!isValid) return;
+    if (hasError) return;
 
-    const senderName = nameInput.value.trim();
-    const senderEmail = emailInput.value.trim();
-    const senderSubject = subjectInput.value.trim();
-    const senderMessage = messageInput.value.trim();
+    const emailSubject = encodeURIComponent(subject + " - from " + name);
+    const emailBody = encodeURIComponent("Sender Name: " + name + "\nSender Email: " + email + "\n\nMessage:\n" + message);
 
-    // Show sending loading state on submit button
-    const originalBtnHtml = formSubmitBtn.innerHTML;
-    formSubmitBtn.disabled = true;
-    formSubmitBtn.innerHTML = `<span>Sending...</span> <i class="ri-loader-4-line spin-animation"></i>`;
+    const mailtoUrl = "mailto:syedabsar99@gmail.com?subject=" + emailSubject + "&body=" + emailBody;
 
-    try {
-      // Send real email to syedabsar99@gmail.com via FormSubmit AJAX
-      const response = await fetch("https://formsubmit.co/ajax/syedabsar99@gmail.com", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify({
-          name: senderName,
-          email: senderEmail,
-          _subject: `Portfolio Message: ${senderSubject}`,
-          message: senderMessage,
-          _captcha: "false",
-          _template: "table"
-        })
-      });
+    window.location.href = mailtoUrl;
 
-      const result = await response.json();
-
-      if (result.success === "true" || result.success === true) {
-        toastBox.className = "toast-box toast-success show";
-        toastMessage.textContent = `Thank you, ${senderName}! Your message was successfully sent to Syed's email inbox (syedabsar99@gmail.com).`;
-        contactForm.reset();
-      } else if (result.message && result.message.includes("Activation")) {
-        // FormSubmit requires 1-time activation confirmation in Syed's Gmail inbox
-        toastBox.className = "toast-box toast-info show";
-        toastMessage.innerHTML = `Message registered! FormSubmit sent a 1-time "Activate Form" email to <strong>syedabsar99@gmail.com</strong>. Syed: check your inbox (or Spam) and click Activate to receive future submissions. You can also chat directly on WhatsApp!`;
-        contactForm.reset();
-      } else {
-        throw new Error(result.message || "Email service error");
-      }
-    } catch (err) {
-      console.warn("Direct form submit error, providing fallback:", err);
-      toastBox.className = "toast-box toast-warning show";
-      toastMessage.innerHTML = `Unable to send via background service. <a href="mailto:syedabsar99@gmail.com?subject=${encodeURIComponent(senderSubject)}&body=${encodeURIComponent(senderMessage + '\n\nFrom: ' + senderName + ' (' + senderEmail + ')')}" style="text-decoration:underline;color:inherit;font-weight:700;">Click here to send via your email app</a>, or click <strong>Chat on WhatsApp</strong>!`;
-    } finally {
-      formSubmitBtn.disabled = false;
-      formSubmitBtn.innerHTML = originalBtnHtml;
-
-      setTimeout(() => {
+    if (toastBox && toastMessage) {
+      toastBox.className = "toast-box toast-success show";
+      toastMessage.innerHTML = "Opening your email app to send message to <strong>syedabsar99@gmail.com</strong>. You can also click <strong>Open in Gmail</strong> or <strong>WhatsApp</strong>!";
+      setTimeout(function () {
         toastBox.classList.remove("show");
-      }, 10000);
+      }, 7000);
     }
   });
 }
 
-// --------------------------------------------------------------------------
-// 14. Initial Startup & Deep Link Navigation
-// --------------------------------------------------------------------------
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
   initTheme();
   renderProjects();
   runTypewriter();
   initCopyButtons();
-  
+
   if (currentYearSpan) {
     currentYearSpan.textContent = new Date().getFullYear();
   }
 
-  // Check if URL has a specific hash (e.g., #projects, #about, #contact)
   const initialHash = window.location.hash.replace("#", "").toLowerCase();
   if (initialHash && validPages.includes(initialHash)) {
     showPage(initialHash);
@@ -704,4 +517,3 @@ document.addEventListener("DOMContentLoaded", () => {
     showPage("home");
   }
 });
-
