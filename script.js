@@ -18,6 +18,15 @@ const projects = [
     demoUrl: "https://syedabsar99.github.io/notes-app/"
   },
   {
+    title: "Digital Clock",
+    description: "Responsive cyberpunk neon LED digital chronometer featuring Orbitron typography, 12-hour AM/PM formatting, real-time date synchronization, and scanline overlay.",
+    category: "javascript",
+    icon: "ri-time-line",
+    tags: ["HTML", "CSS", "JavaScript", "DOM Events"],
+    githubUrl: "https://github.com/syedabsar99/digital-clock",
+    demoUrl: "https://syedabsar99.github.io/digital-clock/"
+  },
+  {
     title: "To-Do List App",
     description: "Feature-rich task management app featuring live task counters, instant search filter, dark mode toggle, and LocalStorage saving.",
     category: "javascript",
